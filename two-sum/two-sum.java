@@ -1,18 +1,25 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
-        int i=0;
+        /*
+        maybe creating a hashmap which contains element as key and indices as value can solve it?        
+        */
         
-        for(int n=0; n<nums.length; n++){
-           for(int y = n+1; y<=nums.length-1; y++){
-               if(nums[n] + nums[y] == target){
-                   result[0] = n;
-                   result[1] = y;
-                   return result;
-               }
-           }
+        HashMap <Integer, Integer> map = new HashMap<>();
+        // for storing indices
+        int[] StoreIndex = new int[2];
+        
+        // inserting it on HashMap
+        for (int i=0; i < nums.length; i++)
+        {
+            if (map.containsKey(target - nums[i]))
+            {
+                StoreIndex[1] = i;
+                StoreIndex[0] = map.get(target - nums[i]);
+                return StoreIndex;
+            }
+            map.put(nums[i], i);
+            
         }
-        
-        return result;
+        return nums;
     }
 }
