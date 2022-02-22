@@ -1,19 +1,18 @@
 class Solution {
     public int numberOfSteps(int num) {
-        int count = 0;
-        while(num>0){
-            if(num == 1) {
-                count ++;
-                break;
+        int step = 0;
+        while(num > 0){
+            if(num % 2 == 0){ // 짝수인 경우
+                num = num / 2;
+            }else{ // 홀수인 경우
+                num = num - 1;
             }
-            if(num%2 == 0){
-                count ++;
-            }
-            else {
-                count+=2;
-            }
-            num/=2;
+            step++;
         }
-        return count;
+        return step;
+        // 짝수인지 홀수인지 판단
+        // 짝수라면 나누기 2
+        // 홀수라면 -1
+        // 0 과 같으면 반환
     }
 }
