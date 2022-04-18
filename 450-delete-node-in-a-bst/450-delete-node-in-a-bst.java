@@ -1,8 +1,9 @@
 public class Solution {
 
   public TreeNode deleteNode(TreeNode root, int key) {
-    if (root == null) { // (1)
-      return root;
+    // [5,3,6,2,4,null,7]
+    if (root == null) { // (1)  [] -> []
+        return root;
     }
     if (key < root.val) { // (2)
       root.left = deleteNode(root.left, key);
