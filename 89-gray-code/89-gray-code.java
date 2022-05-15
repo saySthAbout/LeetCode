@@ -1,24 +1,23 @@
-// Backtracking + Bit manipulation solution
-// Time: O(2 ^ (n + 1)), 0ms
-// Space: O(n) for call stack and O(2 ^ n) for ans, 34.2mb
+// Recursion + Bit manipulation solution
+// Time: O(2 ^ n), 1ms
+// Space: O(n) for call stack, O(2 ^ n) for ans, 34.4mb
 class Solution {
-    int nums = 0;
-    
     public List<Integer> grayCode(int n) {
-        List<Integer> ret = new ArrayList<>();
-        backTrack(n, ret);
-        return ret;
-    }
-    
-    private void backTrack(int n, List<Integer> ret) {
-        if (n == 0) {
-            ret.add(nums);
-            return;
+        // Base case
+        if(n == 0) {
+            List<Integer> ans = new ArrayList<>();
+            ans.add(0);
+            return ans;
         }
-        else {
-            backTrack(n - 1, ret);
-            nums ^= (1 << n - 1); // Flip the bit at position n
-            backTrack(n - 1, ret);
+        
+        // grayCode(n) = grayCode(n - 1) + (1 << (n - 1) + reversed(grayCode(n - 1)))
+        List<Integer> ans = grayCode(n - 1);
+        int base = 1 << (n - 1);
+        int size = ans.size();
+        for(int i = size - 1; i >= 0; i--) {
+            ans.add(base + ans.get(i));  // 1 + the mirror of the grayCode(n - 1)
         }
+        
+        return ans;
     }
 }
