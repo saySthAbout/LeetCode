@@ -10,9 +10,9 @@ class Solution {
             return ans;
         }
         
-        // grayCode(n) = grayCode(n - 1) + (1 << (n - 1) + reversed(grayCode(n - 1)))
+        // grayCode(n) = grayCode(n - 1) + (1 << (n - 1) + reversed(grayCode(n - 1) ))
         List<Integer> ans = grayCode(n - 1);
-        int base = 1 << (n - 1);
+        int base = 1 << (n - 1); // 01 << 2 -> 0100
         int size = ans.size();
         for(int i = size - 1; i >= 0; i--) {
             ans.add(base + ans.get(i));  // 1 + the mirror of the grayCode(n - 1)
