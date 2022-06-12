@@ -35,12 +35,12 @@ class Solution {
         zeroQueue.add(0);
         // 마지막 문자열 처리
         if(sLength - 1 == index){
-            result += Math.min(zeroQueue.size(), oneQueue.size());
+            result += getMinQueueSize();
             return;
         }
         
         if(oneQueue.size() > 0 && fullS.substring(index+1, index+2).equals("1")){
-            result += Math.min(zeroQueue.size(), oneQueue.size());
+            result += getMinQueueSize();
             oneQueue.clear();
         }
         
@@ -51,14 +51,18 @@ class Solution {
         oneQueue.add(1);
         // 마지막 문자열 처리
         if(sLength - 1 == index){
-            result += Math.min(zeroQueue.size(), oneQueue.size());
+            result += getMinQueueSize();
             return;
         }
         if(zeroQueue.size() > 0 && fullS.substring(index+1, index+2).equals("0")){
-            result += Math.min(zeroQueue.size(), oneQueue.size());
+            result += getMinQueueSize();
             zeroQueue.clear();
         }
         
         // System.out.println("[keepOne] index = " + index+ "curStr =" + curStr+ "result =" + result);
+    }
+    
+    public int getMinQueueSize(){
+        return Math.min(zeroQueue.size(), oneQueue.size());
     }
 }
