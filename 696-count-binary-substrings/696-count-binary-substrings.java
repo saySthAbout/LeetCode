@@ -54,11 +54,11 @@ class Solution {
             result += Math.min(zeroQueue.size(), oneQueue.size());
             return;
         }
-        if( fullS.substring(index+1, index+2).equals("0") && zeroQueue.size() > 0){
+        if(zeroQueue.size() > 0 && fullS.substring(index+1, index+2).equals("0")){
             result += Math.min(zeroQueue.size(), oneQueue.size());
             zeroQueue.clear();
         }
         
-//         System.out.println("[keepOne] index = " + index+ "curStr =" + curStr+ "result =" + result);
+        // System.out.println("[keepOne] index = " + index+ "curStr =" + curStr+ "result =" + result);
     }
 }
